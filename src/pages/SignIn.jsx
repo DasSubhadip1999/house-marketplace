@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { async } from "@firebase/util";
 
 function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
@@ -37,7 +37,7 @@ function SignIn() {
         navigate("/");
       }
     } catch (error) {
-      console.log(error);
+      toast.error("Wrong user details");
     }
   };
 
