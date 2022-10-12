@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getDoc, doc } from "firebase/firestore";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { db } from "../firebase.config";
 import Spinner from "../components/Spinner";
@@ -21,15 +21,12 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { data } from "autoprefixer";
 
 //component
 function Listing() {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [shareLinkCopied, setShareLinkCopied] = useState(null);
 
-  const navigate = useNavigate();
   const params = useParams();
   const auth = getAuth();
 
@@ -84,11 +81,9 @@ function Listing() {
         className="shareIconDiv"
         onClick={() => {
           navigator.clipboard.writeText(window.location.href);
-          setShareLinkCopied(true);
           setTimeout(() => {
             toast.success("Link copied");
           }, 500);
-          setShareLinkCopied(false);
         }}
       >
         <img src={shareIcon} alt="shareIcon" />
